@@ -1,5 +1,6 @@
 FROM python:3.10.4-slim-buster
 
+# Pin the version of libnfc to use
 ENV LIBNFC_VERSION=1.8.0
 
 # Use BASH shell
