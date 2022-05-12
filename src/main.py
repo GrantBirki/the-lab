@@ -1,7 +1,7 @@
 import sys
 import time
 
-from lib import NFCUtils
+from lib.nfc_utils import NFCUtils
 
 PN532 = NFCUtils().start_i2c()
 UNLOCK_UIDS = [12345]
