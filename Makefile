@@ -7,7 +7,7 @@ run:
 
 	@echo "\e[32m[#] Running!\e[0m"
 
-run-attached:
+attached-run:
 	@echo "\033[0;34m[#] Killing old docker processes\033[0m"
 	docker-compose down -v -t 1
 
