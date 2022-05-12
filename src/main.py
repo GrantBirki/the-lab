@@ -1,5 +1,4 @@
 import logging
-import sys
 
 from lib.nfc_utils import NFCUtils
 
@@ -8,8 +7,7 @@ LOG = logging.getLogger('logger')
 NFC = NFCUtils(LOG)
 
 def main():
-    print("[i] Waiting for RFID/NFC card...\n")
-    sys.stdout.flush()
+    LOG.info("Online! Waiting for RFID/NFC card...\n")
     while True:
         # Check if a card is available to read
         uid = NFC.scan()
