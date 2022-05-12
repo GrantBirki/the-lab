@@ -6,19 +6,21 @@ from adafruit_pn532.i2c import PN532_I2C
 from digitalio import DigitalInOut
 
 
-def nfc_setup():
-    # I2C connection:
-    i2c = busio.I2C(board.SCL, board.SDA)
+class NFCUtils:
 
-    reset_pin = DigitalInOut(board.D6)
-    req_pin = DigitalInOut(board.D12)
-    pn532 = PN532_I2C(i2c, debug=False, reset=reset_pin, req=req_pin)
+    def start_i2c(self):
+        # I2C connection:
+        i2c = busio.I2C(board.SCL, board.SDA)
 
-    ic, ver, rev, support = pn532.firmware_version
-    print("[i] Found PN532 with firmware version: {0}.{1}".format(ver, rev))
-    sys.stdout.flush()
+        reset_pin = DigitalInOut(board.D6)
+        req_pin = DigitalInOut(board.D12)
+        pn532 = PN532_I2C(i2c, debug=False, reset=reset_pin, req=req_pin)
 
-    # Configure PN532 to communicate with MiFare cards
-    pn532.SAM_configuration()
+        ic, ver, rev, support = pn532.firmware_version
+        print("[i] Found PN532 with firmware version: {0}.{1}".format(ver, rev))
+        sys.stdout.flush()
 
-    return pn532
+        # Configure PN532 to communicate with MiFare cards
+        pn532.SAM_configuration()
+
+        return pn532
