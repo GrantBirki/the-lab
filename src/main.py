@@ -1,4 +1,5 @@
 import time
+import sys
 
 import board
 import busio
@@ -16,11 +17,13 @@ pn532 = PN532_I2C(i2c, debug=False, reset=reset_pin, req=req_pin)
 
 ic, ver, rev, support = pn532.firmware_version
 print("[i] Found PN532 with firmware version: {0}.{1}".format(ver, rev))
+sys.stdout.flush()
 
 # Configure PN532 to communicate with MiFare cards
 pn532.SAM_configuration()
 
 print("[i] Waiting for RFID/NFC card...\n")
+sys.stdout.flush()
 while True:
     # Check if a card is available to read
     uid = pn532.read_passive_target(timeout=0.5)
@@ -35,10 +38,13 @@ while True:
     card_id = int(card_id)
 
     print("[i] Found card with UID:", card_id)
+    sys.stdout.flush()
 
     if card_id in UNLOCK_UIDS:
         print("  [+] Successfully unlocked door!")
+        sys.stdout.flush()
     else:
         print("  [-] Invalid access card!")
+        sys.stdout.flush()
 
     time.sleep(3)
