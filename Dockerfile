@@ -8,7 +8,7 @@ SHELL ["/bin/bash", "-c"]
 
 # Install dependencies
 RUN apt-get update
-RUN apt-get -y install wget zip gcc autoconf automake libtool pkg-config make usbutils i2c-tools
+RUN apt-get -y install wget zip gcc autoconf automake libtool pkg-config make usbutils i2c-tools python3-dev
 
 # Install libnfc
 RUN wget https://github.com/nfc-tools/libnfc/archive/libnfc-$LIBNFC_VERSION.tar.gz
@@ -27,4 +27,11 @@ RUN make install
 RUN echo -e 'device.name = "PN532 over I2C"\ndevice.connstring = "pn532_i2c:/dev/i2c-1"' >> /etc/nfc/libnfc.conf
 
 WORKDIR /app
-ENTRYPOINT ["/bin/bash"]
+
+# Install python dependencies
+COPY src/requirements.txt requirements.txt
+RUN pip install -r requirements.txt
+
+COPY src/ .
+
+ENTRYPOINT ["python", "main.py"]

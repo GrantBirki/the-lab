@@ -1,0 +1,6 @@
+services:
+  the-lab:
+    container_name: access
+    build: .
+    restart: unless-stopped
+    privileged: true
