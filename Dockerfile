@@ -17,7 +17,7 @@ RUN ldconfig
 RUN mkdir -p /etc/nfc/devices.d
 WORKDIR /libnfc-libnfc-$LIBNFC_VERSION
 RUN autoreconf -vis
-RUN ./configure --with-drivers=pn532_uart --enable-debug --prefix=/usr --sysconfdir=/etc
+RUN ./configure --with-drivers=pn532_i2c --enable-debug --prefix=/usr --sysconfdir=/etc
 RUN make clean
 RUN make
 RUN make install
