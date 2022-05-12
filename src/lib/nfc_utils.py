@@ -7,8 +7,8 @@ from digitalio import DigitalInOut
 class NFCUtils:
 
     def __init__(self, log):
-        self.pn532 = self.start_i2c()
         self.log = log
+        self.pn532 = self.start_i2c()
 
     def scan(self):
         uid = self.pn532.read_passive_target(timeout=0.5)
