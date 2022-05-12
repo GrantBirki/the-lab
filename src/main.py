@@ -3,8 +3,8 @@ import sys
 
 from lib.nfc_utils import NFCUtils
 
+logging.basicConfig(format='%(asctime)s %(message)s', datefmt='%m-%d-%Y %I:%M:%S %p', level=logging.DEBUG)
 LOG = logging.getLogger('logger')
-LOG.basicConfig(format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.DEBUG)
 NFC = NFCUtils(LOG)
 
 def main():
