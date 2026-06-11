@@ -1,2 +1,2 @@
-adafruit-circuitpython-pn532==2.3.7
+adafruit-circuitpython-pn532==2.4.9
 RPi.GPIO==0.7.1
